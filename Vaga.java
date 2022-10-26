@@ -96,7 +96,12 @@ public class Vaga {
 
     @Override
     public String toString() {
-        return "Id=" + id + "\n";
+        return "Id=" + id + "\n"
+        + "Numero=" + numero + "\n"
+        + "Tipo=" + tipo + "\n"
+        + "Tamanho=" + tamanho + "\n"
+        + "Preco=" + preco + "\n";
 
+    }
 }
 

@@ -61,6 +61,8 @@ public class Locacao {
 
     @Override
     public String toString() {
-        return "Id=" + id + "\n";
+        return "Id=" + id + "\n"
+        + "Data=" + data + "\n"
+        + "Vaga=" + vaga + "\n";
     }
 }
