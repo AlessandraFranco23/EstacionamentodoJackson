@@ -3,17 +3,13 @@ public class Bicicleta extends Veiculo {
     private String cor;
 
     public Bicicleta(
-            int id,
             String nome,
             String marca,
-            String cor
-
-    ) {
+            String cor) {
         super(nome);
         this.marca = marca;
         this.cor = cor;
     }
-    
 
     public String getMarca() {
         return this.marca;
@@ -29,6 +25,11 @@ public class Bicicleta extends Veiculo {
 
     public void setCor(String cor) {
         this.cor = cor;
+    }
+
+    @Override
+    public String getTipo() {
+        return "B";
     }
 
     @Override

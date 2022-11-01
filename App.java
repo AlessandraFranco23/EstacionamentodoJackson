@@ -1,83 +1,69 @@
 import java.util.List;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class App {
-    public final Repository<Veiculo> veiculoRepository = new Repository<Veiculo>();
-    public final Repository<Vaga> vagaRepository = new Repository<Vaga>();
-    public final Repository<Locacao> locacaoRepository = new Repository<Locacao>();
-    public static void main(String[] args) {
 
-    }
+    public static void main(String[] args) throws Exception {
+        Scanner scanner = new Scanner(System.in);
 
-    public void cadastrarVeiculo(Scanner scanner) {
-        System.out.println("Cadastrar veiculo");
-        System.out.println("Informe o nome do veiculo:");
-        String nome = scanner.next();
-        System.out.println("Informe qual tipo de veiculo é: ([C] Carro; [M] Moto; [B] Bicileta)");
-        String tipo = scanner.next();
+        Repository<Veiculo> veiculoRepository = new Repository<Veiculo>();
+        Repository<Vaga> vagaRepository = new Repository<Vaga>();
+        Repository<Locacao> locacaoRepository = new Repository<Locacao>();
 
-        switch (tipo) {
-            case "C":
-                System.out.println("Informe a placa do carro:");
-                String placa = scanner.next();
-                System.out.println("Informe a cor do Carro:");
-                String cor = scanner.next();
-                try {
-                    Carro carro = new Carro(
-                            nome,
-                            placa,
-                            cor);
-                    System.out.println("Carro cadastrado com sucesso!");
-                    System.out.println(carro);
-                    veiculoRepository.add(carro);
-                } catch (Exception e) {
-                    System.out.println(e.getMessage());
-                }
-                break;
-        }
-    }
+        while (true) {
+            System.out.println("Qual menu deseja:");
+            System.out.println("[1] Veiculos\n[2] Vaga\n[3] Locação");
+            String menu = scanner.next();
 
-    public void listarVeiculos() {
-        List<Veiculo> veiculos = this.veiculoRepository.getAll();
-        for (Veiculo veiculo : veiculos) {
-            System.out.println(veiculo);
-        }
-    }
+            View view = null;
+            if ("1".equals(menu))
+                view = new VeiculoView(scanner, veiculoRepository);
 
-    public void removerVeiculo(Scanner scanner) {
-        System.out.println("Informe o id do veiculo:");
-        Integer id = scanner.nextInt();
-        try {
-            this.veiculoRepository.remove(id);
-        } catch (Exception e) {
-            System.out.println("veiculo não encontrado");
-        }
-    }
+            if ("2".equals(menu))
+                view = new VagaView(scanner, vagaRepository);
 
-    public void cadastrarVaga(Scanner scanner) {
-        System.out.println("Qual o numero");
-        String numero = scanner.next();
+            if ("3".equals(menu))
+                view = new LocacaoView(scanner, locacaoRepository, vagaRepository, veiculoRepository);
 
-        System.out.println("Qual o preco");
-        Double preco = Double.parseDouble(scanner.next());
+            if (Objects.isNull(view)) {
+                System.out.println("Opção invalida");
+                continue;
+            }
 
-        System.out.println("Qual o tamanho");
-        String tamanho = scanner.next();
+            System.out.println("O que deseja fazer?");
+            System.out.println("[1] Cadastrar\n" +
+                    "[2] Listar \n" +
+                    "[3] Remover\n");
 
-        Vaga vaga = new Vaga(numero, tamanho, preco);
-        vagaRepository.add(vaga);
-    }
-
-    public void valorTotalVaga(Scanner scanner) {
-        System.out.println("Qual o id da vaga");
-        Integer id = scanner.nextInt();
-        Double total = 0d;
-        List<Locacao> locacoes = locacaoRepository.getAll();
-        for (Locacao locacao : locacoes) {
-            if (locacao.getVaga().getId().equals(id)) {
-                total += locacao.getVaga().getPreco();
+            String opcao = scanner.next();
+            switch (opcao) {
+                case "1":
+                    view.cadastrar();
+                    break;
+                case "2":
+                    view.listar();
+                    break;
+                case "3":
+                    view.remover();
+                    break;
+                default:
+                    System.out.println("Opção invalida");
+                    break;
             }
         }
-        System.out.println(total);
     }
+
+    // public void valorTotalVaga(Scanner scanner) {
+    // System.out.println("Qual o id da vaga");
+    // Integer id = scanner.nextInt();
+    // Double total = 0d;
+    // List<Locacao> locacoes = locacaoRepository.getAll();
+    // for (Locacao locacao : locacoes) {
+    // if (locacao.getVaga().getId().equals(id)) {
+    // total += locacao.getVaga().getPreco();
+    // }
+    // }
+    // System.out.println(total);
+    // }
 }

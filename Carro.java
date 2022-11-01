@@ -13,6 +13,11 @@ public class Carro extends Veiculo {
     }
 
     @Override
+    public String getTipo() {
+        return "C";
+    }
+
+    @Override
     public String toString() {
         return "Carro [" + super.toString() + "placa=" + placa + "cor=" + cor + "]";
     }

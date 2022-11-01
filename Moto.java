@@ -1,19 +1,16 @@
-public class Moto extends Veiculo{
+public class Moto extends Veiculo {
     private String placa;
     private String cilindrada;
 
     public Moto(
-            int id,
             String nome,
             String placa,
             String cilindrada
-
     ) {
-        super( nome);
+        super(nome);
         this.placa = placa;
         this.cilindrada = cilindrada;
     }
-
 
     public String getPlaca() {
         return this.placa;
@@ -29,6 +26,11 @@ public class Moto extends Veiculo{
 
     public void setCilindrada(String cilindrada) {
         this.cilindrada = cilindrada;
+    }
+
+    @Override
+    public String getTipo() {
+        return "M";
     }
 
     @Override

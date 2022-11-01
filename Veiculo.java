@@ -1,4 +1,4 @@
-public class Veiculo implements Entidade {
+public abstract class Veiculo implements Entidade {
     public Integer id;
     public String nome;
 
@@ -21,6 +21,8 @@ public class Veiculo implements Entidade {
     public void setNome(String nome) {
         this.nome = nome;
     }
+
+    public abstract String getTipo();
 
     @Override
     public String toString() {
