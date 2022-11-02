@@ -7,7 +7,7 @@ public class Vaga implements Entidade {
 
     public Vaga(String numero, String tamanho, Double preco, String tipo) {
         
-        Validator<Vaga> placaValidator = new Validator<Vaga>("(\\d{3})|([a-z]{1})");
+        Validator<Vaga> placaValidator = new Validator<Vaga>("(\\d{3})|([a-zA-Z]{1})");
         if (!placaValidator.isValid(numero))
             throw new IllegalArgumentException("Número da vaga invalida");
         this.numero = numero;

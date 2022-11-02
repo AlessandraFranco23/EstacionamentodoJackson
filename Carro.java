@@ -7,7 +7,7 @@ public class Carro extends Veiculo {
             String placa,
             String cor) {
         super(nome);
-        Validator<Carro> placaValidator = new Validator<Carro>("(\\d{3})|([a-z]{4})");
+        Validator<Carro> placaValidator = new Validator<Carro>("(\\d{3})|([a-zA-Z]{4})");
         if (!placaValidator.isValid(placa))
             throw new IllegalArgumentException("Placa invalida");
         this.placa = placa;
