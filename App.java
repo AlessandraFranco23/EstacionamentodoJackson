@@ -1,4 +1,3 @@
-import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -21,7 +20,7 @@ public class App {
                 view = new VeiculoView(scanner, veiculoRepository);
 
             if ("2".equals(menu))
-                view = new VagaView(scanner, vagaRepository);
+                view = new VagaView(scanner, locacaoRepository, vagaRepository);
 
             if ("3".equals(menu))
                 view = new LocacaoView(scanner, locacaoRepository, vagaRepository, veiculoRepository);
@@ -53,17 +52,4 @@ public class App {
             }
         }
     }
-
-    // public void valorTotalVaga(Scanner scanner) {
-    // System.out.println("Qual o id da vaga");
-    // Integer id = scanner.nextInt();
-    // Double total = 0d;
-    // List<Locacao> locacoes = locacaoRepository.getAll();
-    // for (Locacao locacao : locacoes) {
-    // if (locacao.getVaga().getId().equals(id)) {
-    // total += locacao.getVaga().getPreco();
-    // }
-    // }
-    // System.out.println(total);
-    // }
 }

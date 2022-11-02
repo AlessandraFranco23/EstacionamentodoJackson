@@ -3,8 +3,9 @@ public class Vaga implements Entidade {
     private String numero;
     private String tamanho;
     private Double preco;
+    private String tipo;
 
-    public Vaga(String numero, String tamanho, Double preco) {
+    public Vaga(String numero, String tamanho, Double preco, String tipo) {
         
         Validator<Vaga> placaValidator = new Validator<Vaga>("(\\d{3})|([a-z]{1})");
         if (!placaValidator.isValid(numero))
@@ -12,6 +13,7 @@ public class Vaga implements Entidade {
         this.numero = numero;
         this.tamanho = tamanho;
         this.preco = preco;
+        this.tipo = tipo;
     }
 
     @Override
@@ -54,6 +56,14 @@ public class Vaga implements Entidade {
 
     public void setPreco(Double preco) {
         this.preco = preco;
+    }
+
+    public String getTipo() {
+        return this.tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
     
 }

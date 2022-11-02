@@ -31,6 +31,8 @@ public class LocacaoView implements View {
         Veiculo veiculo = veiculoRepository.get(idVeiculo);
 
         Locacao locacao = new Locacao();
+        if (!veiculo.getTipo().equals(vaga.getTipo())) 
+            throw new Exception("Veiculo indevido pelo tipo da vaga");  
         locacao.locar(veiculo, vaga, dataLocacao);
 
         locacaoRepository.add(locacao);
