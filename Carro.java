@@ -5,9 +5,11 @@ public class Carro extends Veiculo {
     public Carro(
             String nome,
             String placa,
-            String cor
-    ) {
-        super( nome);
+            String cor) {
+        super(nome);
+        Validator<Carro> placaValidator = new Validator<Carro>("(\\d{3})|([a-z]{4})");
+        if (!placaValidator.isValid(placa))
+            throw new IllegalArgumentException("Placa invalida");
         this.placa = placa;
         this.cor = cor;
     }
@@ -21,7 +23,6 @@ public class Carro extends Veiculo {
     public String toString() {
         return "Carro [" + super.toString() + "placa=" + placa + "cor=" + cor + "]";
     }
-
 
     public String getPlaca() {
         return this.placa;

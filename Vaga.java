@@ -5,6 +5,10 @@ public class Vaga implements Entidade {
     private Double preco;
 
     public Vaga(String numero, String tamanho, Double preco) {
+        
+        Validator<Vaga> placaValidator = new Validator<Vaga>("(\\d{3})|([a-z]{1})");
+        if (!placaValidator.isValid(numero))
+            throw new IllegalArgumentException("Número da vaga invalida");
         this.numero = numero;
         this.tamanho = tamanho;
         this.preco = preco;
