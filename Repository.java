@@ -3,7 +3,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class Repository<T extends Entidade> {
-    private List<T> itens = new ArrayList<T>();
+    protected List<T> itens = new ArrayList<T>();
 
     public void add(T item) {
         if (!Objects.isNull(item)) {

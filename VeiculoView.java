@@ -15,7 +15,7 @@ public class VeiculoView implements View {
         System.out.println("Informe o nome do veiculo:");
         String nome = scanner.next();
         System.out.println("Informe qual tipo de veiculo é: ([C] Carro; [M] Moto; [B] Bicileta)");
-        String tipo = scanner.next();
+        String tipo = scanner.next().toUpperCase();
         Veiculo veiculo = null;
         switch (tipo) {
             case "C":
@@ -53,7 +53,7 @@ public class VeiculoView implements View {
     public void listar() {
         System.out.println("Informe o tipo de veiculo deseja visualzar:");
         System.out.println("[A] Todos; [C] Carro; [M] Moto; [B] Bicicleta");
-        String tipo = scanner.next();
+        String tipo = scanner.next().toUpperCase();
         List<Veiculo> veiculos = this.veiculoRepository.getAll();
 
         for (Veiculo veiculo : veiculos) {

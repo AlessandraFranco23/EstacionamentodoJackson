@@ -9,6 +9,6 @@ public class Validator<T> {
     }
 
     public boolean isValid(String value) {
-        return pattern.matcher(value).matches();
+        return pattern.matcher(value).find();
     }
 }

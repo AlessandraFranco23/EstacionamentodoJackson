@@ -13,7 +13,7 @@ public class VagaView implements View {
         this.locacaoRepository = locacaoRepository;
     }
 
-    public void cadastrar() {
+    public void cadastrar() throws Exception {
         System.out.println("Qual o numero");
         String numero = scanner.next();
 
@@ -24,7 +24,14 @@ public class VagaView implements View {
         String tamanho = scanner.next();
 
         System.out.println("Qual o tipo :([C] Carro; [M] Moto; [B] Bicileta)");
-        String tipo = scanner.next();
+        String tipo = scanner.next().toUpperCase();
+
+        List<Vaga> vagas = vagaRepository.getAll();
+        for (Vaga vaga : vagas) {
+            if (vaga.getNumero().equals(numero)) {
+                throw new Exception("Numero da vaga já existe");
+            }
+        }
 
         Vaga vaga = new Vaga(numero, tamanho, preco, tipo);
         vagaRepository.add(vaga);
